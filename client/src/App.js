@@ -1,14 +1,19 @@
 import React from 'react';
-// import logo from './logo.svg';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 import './App.css';
 // import { Browser } from 'react-route-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>It works</h1>
+const client = new ApolloClient({
+  uri: ''
+});
+
+const App = () => (
+  <ApolloProvider client={client}>
+    <div>
+      <h2>React Apollo Boilerpate</h2>
     </div>
-  );
-}
+  </ApolloProvider>
+)
 
 export default App;
