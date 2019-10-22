@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "webmaster0307",
+    "MONGO_PASSWORD": "wrNqLxxAtxq0Iyim",
+    "MONGO_DB": "merngraphql"
+  }
+}
