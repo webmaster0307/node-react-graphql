@@ -3,6 +3,6 @@ import React from 'react';
 export default React.createContext({
     token: null,
     userId: null,
-    login: () => { },
-    logout: () => { }
+    login: (token, userId, tokenExpiration) => { },
+    logout: () => { console.log('logout is called') }
 })
