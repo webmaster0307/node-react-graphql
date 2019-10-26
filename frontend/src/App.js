@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
-import './App.css';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+
 import AuthPage from './pages/Auth';
 import BookingsPage from './pages/Bookings';
 import EventsPage from './pages/Events';
-import Navigation from './components/Navigation/MainNavigation';
+import MainNavigation from './components/Navigation/MainNavigation';
 import AuthContext from './context/auth-context';
+
+import './App.css';
 
 class App extends Component {
   state = {
     token: null,
     userId: null
-  }
-
+  };
   login = (token, userId, tokenExpiration) => {
-    this.setState({ token: token, userId: userId });
-  }
-
+    this.setState({
+      token: token,
+      userId: userId
+    });
+  };
   logout = () => {
-    console.log('logout is called')
-    this.setState({ token: null, userId: null });
-  }
-
+    this.setState({
+      token: null,
+      userId: null
+    });
+  };
   render() {
     return (
       <BrowserRouter>
@@ -32,9 +36,10 @@ class App extends Component {
               userId: this.state.userId,
               login: this.login,
               logout: this.logout
-            }}>
-            <Navigation />
-            <main className="main-content">
+            }}
+          >
+            <MainNavigation />
+            <main className='main-content'>
               <Switch>
                 {this.state.token && <Redirect from='/' to='/events' exact />}
                 {this.state.token && (
@@ -44,7 +49,7 @@ class App extends Component {
                   <Route path='/auth' component={AuthPage} />
                 )}
                 <Route path='/events' component={EventsPage} />
-                {this.token && (
+                {this.state.token && (
                   <Route path='/bookings' component={BookingsPage} />
                 )}
                 {!this.state.token && <Redirect to='/auth' exact />}
@@ -52,8 +57,8 @@ class App extends Component {
             </main>
           </AuthContext.Provider>
         </React.Fragment>
-      </BrowserRouter >
-    )
+      </BrowserRouter>
+    );
   }
 }
 
